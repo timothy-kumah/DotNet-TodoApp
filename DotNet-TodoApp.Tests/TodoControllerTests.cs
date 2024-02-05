@@ -1,4 +1,7 @@
-﻿namespace DotNet_TodoApp.Tests
+﻿using DotNet_TodoApp.Controllers;
+using DotNet_TodoApp.Dtos;
+
+namespace DotNet_TodoApp.Tests
 {
     public class TodoControllerTests
     {
@@ -7,8 +10,16 @@
         {
             //Arrange
             var sut = new TodoController();
-            //Act
+            var dto = new TodoDto
+            {
+                CreatedAt = DateTime.Now,
+                Description = "Test",
+                IsCompleted = true,
+                Title = "Test",
+            };
 
+            //Act
+            sut.AddTodo(dto);
             //Assert
         }
     }

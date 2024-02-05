@@ -1,9 +1,7 @@
-﻿namespace DotNet_TodoApp.Models
+﻿namespace DotNet_TodoApp.Dtos
 {
-    public class Todo
+    public class TodoDto
     {
-        public int Id { get; set; }
-
         public string Title { get; set; }
 
         public string Description { get; set; }
