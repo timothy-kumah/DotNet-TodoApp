@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using DotNet_TodoApp.Data;
 using DotNet_TodoApp.Models;
 using DotNet_TodoApp.Dtos;
+using DotNet_TodoApp.Tests;
 
 namespace DotNet_TodoApp.Controllers
 {
@@ -15,10 +16,11 @@ namespace DotNet_TodoApp.Controllers
     [ApiController]
     public class TodoController : ControllerBase
     {
+        private readonly ITodoService todoService;
 
-        public TodoController()
+        public TodoController(ITodoService _todoService)
         {
-           
+           todoService = _todoService;
         }
 
 
@@ -27,8 +29,17 @@ namespace DotNet_TodoApp.Controllers
         [HttpPost]
         public async Task<IActionResult> AddTodo(TodoDto dto)
         {
-            return Ok("Todo Created");
+            if (dto != null)
+            {
+                await todoService.AddTodo(dto);
+                return Ok("Todo added successfully");
+            }
+
+            return BadRequest("Form is null");
+            
         }
+
+
 
     }
 }
