@@ -23,9 +23,6 @@ namespace DotNet_TodoApp.Controllers
            todoService = _todoService;
         }
 
-
-        // POST: api/Todo
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<IActionResult> AddTodo(TodoDto dto)
         {
@@ -37,6 +34,12 @@ namespace DotNet_TodoApp.Controllers
 
             return BadRequest("Form is null");
             
+        }
+
+        [HttpGet]
+        public IEnumerable<Todo> GetTodos()
+        {
+            return todoService.Getodos();
         }
 
 

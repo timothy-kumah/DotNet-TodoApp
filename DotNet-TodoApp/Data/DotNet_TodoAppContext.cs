@@ -12,8 +12,9 @@ namespace DotNet_TodoApp.Data
         public DotNet_TodoAppContext (DbContextOptions<DotNet_TodoAppContext> options)
             : base(options)
         {
+
         }
 
-        public DbSet<DotNet_TodoApp.Models.Todo> Todo { get; set; } = default!;
+        public DbSet<Todo> Todo { get; set; } = default!;
     }
 }
