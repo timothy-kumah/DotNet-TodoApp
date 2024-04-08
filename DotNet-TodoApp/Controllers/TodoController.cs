@@ -28,8 +28,9 @@ namespace DotNet_TodoApp.Controllers
         {
             if (dto != null)
             {
-                await todoService.AddTodo(dto);
-                return Ok("Todo added successfully");
+                var id = todoService.AddTodo(dto);
+                var route = Url.Action("GetTodoById", "Todo", new { id }, Request.Scheme);
+                return Created(route,id);
             }
 
             return BadRequest("Form is null");
@@ -41,6 +42,7 @@ namespace DotNet_TodoApp.Controllers
         {
             return todoService.Getodos();
         }
+
 
 
 

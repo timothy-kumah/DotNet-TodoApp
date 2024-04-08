@@ -12,7 +12,7 @@ namespace DotNet_TodoApp.Services
             _todoRepository = todoRepository;
         }
 
-        public async Task AddTodo(TodoDto dto)
+        public Guid AddTodo(TodoDto dto)
         {
             var todo = new Todo
             {
@@ -21,7 +21,8 @@ namespace DotNet_TodoApp.Services
                 Description = dto.Description,
                 IsCompleted = dto.IsCompleted,
             };
-            await _todoRepository.AddTodo(todo);
+            _todoRepository.AddTodo(todo);
+            return todo.TodoId;
         }
 
         public IEnumerable<Todo> Getodos()

@@ -5,7 +5,7 @@ namespace DotNet_TodoApp.Tests
 {
     public interface ITodoService
     {
-        public Task AddTodo(TodoDto dto);
+        public Guid AddTodo(TodoDto dto);
         public IEnumerable<Todo> Getodos();
     }
 }
