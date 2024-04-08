@@ -20,7 +20,7 @@ namespace DotNet_TodoApp.Controllers
 
         public TodoController(ITodoService _todoService)
         {
-           todoService = _todoService;
+            todoService = _todoService;
         }
 
         [HttpPost]
@@ -30,11 +30,11 @@ namespace DotNet_TodoApp.Controllers
             {
                 var id = todoService.AddTodo(dto);
                 var route = Url.Action("GetTodoById", "Todo", new { id }, Request.Scheme);
-                return Created(route,id);
+                return Created("uri", route);
             }
 
             return BadRequest("Form is null");
-            
+
         }
 
         [HttpGet]
@@ -43,8 +43,27 @@ namespace DotNet_TodoApp.Controllers
             return todoService.Getodos();
         }
 
+        [HttpGet("{id}")]
+        public Todo GetTodoById(Guid id)
+        {
+            return todoService.GetodoById(id);
+        }
 
+        [HttpPut("{id}")]
+        public IActionResult EditTodo(Guid id,TodoDto dto)
+        {
+            if (dto == null) return BadRequest("dto is null");
 
+            todoService.EditTodo(id,dto);
+            return Ok();
+ 
+        }
 
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTodo(Guid id)
+        {
+            todoService.DeleteTodo(id);
+            return Ok();
+        }
     }
 }

@@ -25,6 +25,21 @@ namespace DotNet_TodoApp.Services
             return todo.TodoId;
         }
 
+        public void DeleteTodo(Guid id)
+        {
+            _todoRepository.DeleteTodo(id);
+        }
+
+        public void EditTodo(Guid id, TodoDto dto)
+        {
+            _todoRepository.EditTodo(id,dto);
+        }
+
+        public Todo GetodoById(Guid id)
+        {
+            return _todoRepository.GetTodo(id);
+        }
+
         public IEnumerable<Todo> Getodos()
         {
             return  _todoRepository.GetTodos();

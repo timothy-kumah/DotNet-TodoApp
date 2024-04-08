@@ -4,7 +4,7 @@
     {
         public int Id { get; set; }
 
-        public Guid TodoId { get; set; } = new Guid();
+        public Guid TodoId { get; set; } = Guid.NewGuid();
 
         public string Title { get; set; }
 
